@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+    <input type="text" id="name" name="name" placeholder="Enter name" />
+    <input type="number" id="year" name="year" placeholder="Enter year" />
+    <button id="button">Submit</button>
+    <h3 id="url">https://localhost:8080/</h3>
 
+    <script type="text/javascript">
+      document.getElementById('button').addEventListener('click', function () {
+        const base = 'https://localhost:8080/';
+        const name = document.getElementById('name').value;
+        const year = document.getElementById('year').value;
+
+        const params = [];
+        if (name) params.push('name=' + encodeURIComponent(name));
+        if (year) params.push('year=' + encodeURIComponent(year));
+
+        const urlText = params.length > 0 ? base + '?' + params.join('&') : base;
+        document.getElementById('url').textContent = urlText;
+      });
+    </script>
+  </body>
 </html>
